@@ -1,0 +1,33 @@
+﻿@page "/"
+@using MyTest.Client.API
+@using StrawberryShake
+
+<PageTitle>Index</PageTitle>
+<button class="btn btn-md btn-primary">This is a button</button>
+
+@if (_data is not null)
+{
+    foreach (var query in _data.FirstQueries)
+    {
+        <p>@query.TestString</p>
+    }
+}
+@code {
+    private API? _api;
+    private IGetMyFirstQueryResult? _data;
+    protected override async Task OnInitializedAsync()
+    {
+        _api = new API();
+        var result = await _api.GetMyFirstQuery();
+        if (result.IsErrorResult())
+        {
+            Console.WriteLine("Log error here");
+        }
+        else
+        {
+            if (result.Data != null) _data = result.Data;
+        }
+        await base.OnInitializedAsync();
+    }
+
+}

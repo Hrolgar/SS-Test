@@ -1,0 +1,8 @@
+query GetMyFirstQuery{
+    firstQueries {
+        id
+        testString
+        testInt
+        testBool
+    }
+}

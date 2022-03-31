@@ -1,0 +1,70 @@
+﻿schema {
+  query: Query
+}
+
+type Query {
+  firstQueries(where: MyFirstSchemaFilterInput order: [MyFirstSchemaSortInput!]): [MyFirstSchema!]!
+}
+
+input MyFirstSchemaFilterInput {
+  and: [MyFirstSchemaFilterInput!]
+  or: [MyFirstSchemaFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  testString: StringOperationFilterInput
+  testInt: ComparableInt32OperationFilterInput
+  testBool: BooleanOperationFilterInput
+}
+
+input MyFirstSchemaSortInput {
+  id: SortEnumType
+  testString: SortEnumType
+  testInt: SortEnumType
+  testBool: SortEnumType
+}
+
+input ComparableInt32OperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int!]
+  nin: [Int!]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input BooleanOperationFilterInput {
+  eq: Boolean
+  neq: Boolean
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+type MyFirstSchema {
+  id: Int!
+  testString: String!
+  testInt: Int!
+  testBool: Boolean!
+}
